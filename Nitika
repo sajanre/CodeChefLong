@@ -1,0 +1,54 @@
+// Java code for Nitika (July'17)
+// submitted by Manvi Goel
+
+import java.util.*;
+class NameFormat 
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        int t = sc.nextInt();                                        // number of test cases
+        sc.nextLine();                          
+        for(int a = 0 ; a < t; a++)
+        {
+            String newstr = "" ;                                     // string to store the final name
+            String str = sc.nextLine();
+            String words[] = str.split(" ") ;                        // split up the words of the name
+            for(int i = 0 ; i < words.length - 1 ; i ++)             //loop runs for all but the last word
+            {
+                int t1 = (int)words[i].charAt(0) ;  
+                if (t1>= 97 && t1 <=122)                             // if first letter of the word is small, then make it capital using ascii values 
+                    t1 = t1 - 32 ;
+                newstr = newstr + (char)t1 + "." + " " ;             // store the value in the string
+                
+            }
+            String lastWord = str.substring(str.lastIndexOf(" ") + 1);      //extracting the last word
+            String str1 = last_name(lastWord);
+            newstr = newstr + str1 ;                                 // concatinate the name
+            System.out.println(newstr);
+            
+            
+        }
+    }
+    // function to modify the last word as required, i.e, the first letter capital
+    // and rest small
+
+    public static String last_name(String name)
+    {
+        String temp = "" ;
+        int value = (int) name.charAt(0);
+        if(value >= 97 && value <= 122 )                             // if first letter of the word is small, then make it capital 
+            value = value - 32; 
+        temp = temp + (char)value ;
+        for(int i = 1; i < name.length() ; i ++)                     // make all but the last letter small using ascii values
+        {
+            int ascii = (int) name.charAt(i);       
+            if (ascii >=65 && ascii <=90)
+                ascii = ascii + 32 ;
+            temp = temp + (char) ascii ;    
+        }
+        return temp ;
+                
+    }
+}
